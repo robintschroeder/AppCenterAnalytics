@@ -11,13 +11,22 @@ namespace AppCenterAnalytics
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<AppState>();
+
             MainPage = new AppShell();
+        }
+
+        protected override void OnResume()
+        {
+        }
+
+        protected override void OnSleep()
+        {
         }
 
         protected override void OnStart()
@@ -26,14 +35,9 @@ namespace AppCenterAnalytics
                   "uwp={Your UWP App secret here};" +
                   "android=b3f14a4f-f414-4c26-bf1a-d0808076fec7",
                   typeof(Analytics), typeof(Crashes));
-        }
 
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            IAppState AppState = DependencyService.Get<IAppState>();
+            AppState.Init();
         }
     }
 }

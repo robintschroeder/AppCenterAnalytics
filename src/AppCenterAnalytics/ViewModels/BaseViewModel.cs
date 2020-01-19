@@ -12,16 +12,20 @@ namespace AppCenterAnalytics.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private bool isBusy = false;
+        private string title = string.Empty;
+
+        //The Get<T> method creates an instance of the platform implementation of interface T as a singleton, by default. However, this behavior can be changed.
+        public IAppState AppState => DependencyService.Get<IAppState>();
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
-        bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
         public string Title
         {
             get { return title; }
@@ -42,7 +46,9 @@ namespace AppCenterAnalytics.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -51,6 +57,7 @@ namespace AppCenterAnalytics.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+
+        #endregion INotifyPropertyChanged
     }
 }
