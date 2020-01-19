@@ -13,6 +13,12 @@ namespace AppCenterAnalytics.Services
     public class AppState : IAppState
     {
         private Guid _installId = Guid.Empty;
+        private AppLogLevel _logLevel;
+
+        public AppLogLevel GetAppLogLevel()
+        {
+            return _logLevel;
+        }
 
         public Guid GetInstallId()
         {
@@ -27,6 +33,18 @@ namespace AppCenterAnalytics.Services
                 System.Guid? installId = await AppCenter.GetInstallIdAsync();
                 if (installId != null) { _installId = (Guid)installId; }
             }
+        }
+
+        public void SetAppCenterConsoleLogLevel(Microsoft.AppCenter.LogLevel newLogLevel)
+        {
+            //this tells AppCenter what logging should be shown in the console
+            AppCenter.LogLevel = newLogLevel;
+        }
+
+        public void SetAppLogLevel(AppLogLevel level)
+        {
+            //this controls what logging message should be set to AppCenter at all
+            _logLevel = level;
         }
 
         private async Task<bool> CheckAppCenter()

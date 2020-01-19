@@ -26,6 +26,8 @@ namespace AppCenterAnalytics.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
+        public ILogging Logging => DependencyService.Get<ILogging>();
+
         public string Title
         {
             get { return title; }
