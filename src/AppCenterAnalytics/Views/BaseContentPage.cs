@@ -27,6 +27,8 @@ namespace AppCenterAnalytics.Views
         {
             base.OnDisappearing();
 
+            //you may not really need to know that a user navigated away from a page,
+            //but just in case, here is the code
             //if you use nested folders to help id your views, use: this.GetType().FullName
             _logging.LogEvent(AppLogLevel.Info, $"{this.GetType().Name} Disappeared");
         }
