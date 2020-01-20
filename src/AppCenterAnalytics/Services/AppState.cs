@@ -60,7 +60,7 @@ namespace AppCenterAnalytics.Services
                     if (!isAnalyticsEnabled)
                     {
                         //we can't really report to appcenter that appcenter isn't working!
-                        Debug.WriteLine($"[{this.GetType().ToString()}] Warning: AppCenter Analytics is not enabled.");
+                        Debug.WriteLine($"[{this.GetType().ToString()}] Warning: AppCenter Analytics is NOT enabled.");
                         retValue = false;
                     }
 
@@ -68,7 +68,7 @@ namespace AppCenterAnalytics.Services
                     if (!isCrashEnabled)
                     {
                         //we can't really report to appcenter that appcenter isn't working!
-                        Debug.WriteLine($"[{this.GetType().ToString()}] Warning: AppCenter Crash Reporting is not enabled.");
+                        Debug.WriteLine($"[{this.GetType().ToString()}] Warning: AppCenter Crash Reporting is NOT enabled.");
                         retValue = false;
                     }
                 }
