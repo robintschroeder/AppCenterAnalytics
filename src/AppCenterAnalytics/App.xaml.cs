@@ -36,9 +36,9 @@ namespace AppCenterAnalytics
         protected override void OnStart()
         {
             //Remember, there is always a semi-colon at the end of each!
-            AppCenter.Start("ios=a7a2d1ad-07ab-43e2-a9cb-7fb8b7242cc7;" +
+            AppCenter.Start("ios={Your iOS App secret here};" +
                   "uwp={Your UWP App secret here};" +
-                  "android=b3f14a4f-f414-4c26-bf1a-d0808076fec7;",
+                  "android={Your Droid App secret here};",
                   typeof(Analytics), typeof(Crashes));
 
             IAppState AppState = DependencyService.Get<IAppState>();
